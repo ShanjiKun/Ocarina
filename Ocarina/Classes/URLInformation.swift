@@ -147,15 +147,15 @@ public class URLInformation: NSCoding, Equatable {
     /// If og:description is not present, there is a fallback to the `<meta type="description">` html tag.
     public var descriptionText: String?
     
-    /// An URL to an image that was provided as the og:image tag. 
+    /// An URL to an image that was provided as the og:image tag.
     /// If no og:image tag is present, it falls back to the `<meta type="thumbnail">` html tag.
     public var imageURL: URL?
     
-    /// The possible size of the image from the imageURL property. This size is parsed from the `og:image:width` and `og:image:height`. 
+    /// The possible size of the image from the imageURL property. This size is parsed from the `og:image:width` and `og:image:height`.
     /// However since the implemenation of some websites doesn't follow the OGP standard, this size might be incorrect.
     public var imageSize: CGSize?
     
-    /// An URL to the Favicon image that was provided by the icon link tag. 
+    /// An URL to the Favicon image that was provided by the icon link tag.
     /// Domains may also have a faveicon at `http://DOMAIN.TLD/favicon.ico`. However this property only checks for the tag in the head of a page.
     /// You may still do a HEAD request to see if the icon is avaible at that URL.
     public var faviconURL: URL?
@@ -171,6 +171,8 @@ public class URLInformation: NSCoding, Equatable {
     
     /// The type of the content behind the URL, this is determented (in order) by the `og:type` tag or mimetype
     public var type: URLInformationType
+    
+    public var sitename: String?
     
     /// Create a new instance of URLInformation with the given URL and title
     ///
@@ -230,6 +232,10 @@ public class URLInformation: NSCoding, Equatable {
             } else if let appleTouchIconURLString = html.xpath("/html/head/link[@rel=\"apple-touch-icon-precomposed\" and not(@sizes)]/@href").first?.text {
                 self.appleTouchIconURL = URL(string: appleTouchIconURLString, relativeTo: url)
             }
+                            
+            if let sitename = html.xpath("/html/head/meta[(@property|@name)=\"og:site_name\"]/@content").first?.text {
+                self.sitename = sitename
+            }
             
             self.twitterCard = TwitterCardInformation(html: html)
             
@@ -258,6 +264,7 @@ public class URLInformation: NSCoding, Equatable {
         self.appleTouchIconURL = aDecoder.decodeObject(forKey: "appleTouchIconURL") as? URL
         self.faviconURL = aDecoder.decodeObject(forKey: "faviconURL") as? URL
         self.twitterCard = aDecoder.decodeObject(forKey: "twitterCard") as? TwitterCardInformation
+        self.sitename = aDecoder.decodeObject(forKey: "sitename") as? String
         if let typeString = aDecoder.decodeObject(forKey: "type") as? String {
             self.type = URLInformationType(rawValue: typeString) ?? URLInformationType.website
         } else {
@@ -276,6 +283,7 @@ public class URLInformation: NSCoding, Equatable {
         aCoder.encode(self.faviconURL, forKey: "faviconURL")
                 aCoder.encode(self.twitterCard, forKey: "twitterCard")
         aCoder.encode(self.type.rawValue, forKey: "type")
+        aCoder.encode(self.sitename, forKey: "sitename")
 
     }
     
