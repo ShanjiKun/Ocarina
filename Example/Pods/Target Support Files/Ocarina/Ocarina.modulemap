@@ -1,0 +1,6 @@
+framework module Ocarina {
+  umbrella header "Ocarina-umbrella.h"
+
+  export *
+  module * { export * }
+}

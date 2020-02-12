@@ -1,0 +1,23 @@
+PODS:
+  - Kanna (5.0.0)
+  - Ocarina (0.1.0):
+    - Kanna (= 5.0.0)
+
+DEPENDENCIES:
+  - Ocarina (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Kanna
+
+EXTERNAL SOURCES:
+  Ocarina:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Kanna: a32875df62975f8f4b871e933b4ea1a5c3b8be0f
+  Ocarina: e2734691889cdc7e117c4bd9672296bd63ff690f
+
+PODFILE CHECKSUM: f5ceb7df90f94b7ac8b25b5f5c762cfc2b29ecd1
+
+COCOAPODS: 1.8.4

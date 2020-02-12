@@ -1,0 +1,9 @@
+use_frameworks!
+
+target 'Ocarina Example' do
+  pod 'Ocarina', :path => '../'
+
+  target 'OcarinaTests' do
+    inherit! :search_paths
+  end
+end

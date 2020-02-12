@@ -1,0 +1,30 @@
+{
+  "name": "Ocarina",
+  "version": "0.1.0",
+  "summary": "A short description of Ocarina.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/git/Ocarina",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "git": "yacine@onyolo.com"
+  },
+  "source": {
+    "git": "https://github.com/git/Ocarina.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Ocarina/Classes/**/*",
+  "xcconfig": {
+    "HEADER_SEARCH_PATHS": "$(SDKROOT)/usr/include/libxml2"
+  },
+  "dependencies": {
+    "Kanna": [
+      "5.0.0"
+    ]
+  }
+}

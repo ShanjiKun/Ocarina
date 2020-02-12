@@ -1,0 +1,6 @@
+framework module Pods_OcarinaTests {
+  umbrella header "Pods-OcarinaTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
